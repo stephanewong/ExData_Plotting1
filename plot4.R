@@ -44,6 +44,11 @@ y33 <- subset(elecpower, (Date == "2007-02-01") | (Date == "2007-02-02"),
 y4 <- subset(elecpower, (Date == "2007-02-01") | (Date == "2007-02-02"),
              select = Global_reactive_power)[,1]
 
+# open PNG device
+png(filename = "plot4.png", width = 480, height = 480, units = "px")
+
+# make the plots
+
 # plot in a 2 by 2 matrix
 par(mfrow = c(2,2))
 
@@ -68,15 +73,14 @@ mtext(side = 2, "Energy sub metering", line = 2.5, cex = 0.7)
 
 legend("topright", lty = 1, col= c("black", "red", "blue"),
        legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
-       cex = 0.6)
+       cex = 1, box.lty = "blank", inset = 0.01)
 
 # generate 4th plot
 plot(x, y4, type = "s", ann = FALSE, cex.axis = 0.7, lwd = 0.5)
 mtext(side = 1, "datetime", line = 2.5, cex = 0.7)
 mtext(side = 2, "Global_reactive_power", line = 2.5, cex = 0.7)
 
-# store in PNG file
-dev.copy(png, file = "plot4.png", width = 480, height = 480, units = "px")
+# close PNG device
 dev.off()
 
 # Back to 1x1 normal matrix

@@ -28,6 +28,10 @@ y2 <- subset(elecpower, (Date == "2007-02-01") | (Date == "2007-02-02"),
 y3 <- subset(elecpower, (Date == "2007-02-01") | (Date == "2007-02-02"),
              select = Sub_metering_3)[,1]
 
+# open PNG device
+png(filename = "plot3.png", width = 480, height = 480, units = "px")
+
+# make the plots
 plot(x, y1, type = "l", ylab = "Energy sub metering", xlab ="",
      cex.lab = 0.8, cex.axis = 0.8)
 lines(x, y2, col = "red")
@@ -35,10 +39,9 @@ lines(x, y3, col = "blue")
 
 legend("topright", lty = 1, col= c("black", "red", "blue"),
        legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
-       , cex = 0.8)
+       , cex = 0.8, yjust = 0)
 
-# store in PNG file
-dev.copy(png, file = "plot3.png", width = 480, height = 480, units = "px")
+# close PNG device
 dev.off()
 
 # Back to my local French time
